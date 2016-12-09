@@ -17,10 +17,7 @@ describe("Bowling", function(){
   });
 
   it("should be able to count score of a frame", function(){
-    bowling.bowl(5);
-    bowling.bowl(3);
-    bowling.sumFrameScore();
-    expect(bowling.frameScore).toEqual(8);
+    expect(bowling.sumFrame([5,3])).toEqual(8);
   });
 
   it("should increase frame count after a frame game", function(){
@@ -31,7 +28,7 @@ describe("Bowling", function(){
 
   it("shold return true if its a strike", function(){
     bowling.bowl(10);
-    expect(bowling.isStrike()).toBe(true);
+    expect(bowling.isStrike([10])).toBe(true);
   });
 
   it("should go on to next frame if strike", function(){
@@ -40,9 +37,7 @@ describe("Bowling", function(){
   });
 
   it("should know when it's a spare", function(){
-    bowling.bowl(9);
-    bowling.bowl(1);
-    expect(bowling.isSpare()).toBe(true);
+    expect(bowling.isSpare([9,1])).toBe(true);
   });
 
   it("should save last fram scores", function(){
@@ -50,5 +45,6 @@ describe("Bowling", function(){
     bowling.bowl(1);
     expect(bowling.lastFrame).toEqual([9,1])
   });
+
 
 });
