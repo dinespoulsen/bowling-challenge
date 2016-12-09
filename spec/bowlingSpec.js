@@ -123,5 +123,4 @@ describe("Bowling", function(){
     }
     expect( function(){bowling.bowl(10)}).toThrow(new Error("you do not have more frames"))
   });
-// expect(function () {thermostat.decreaseTemperature()}).toThrow("Mininum temperature is 10 degrees. Cannot go below.")
 });
