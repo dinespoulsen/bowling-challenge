@@ -57,8 +57,15 @@ Bowling.prototype.isSpare = function(frame){
 }
 
 Bowling.prototype.frameScore = function(frame){
-  this.score = this.sumFrame(frame);
-
+  if(this.isStrike(this.lastFrame)){
+    this.score += this.sumFrame(frame)*2
+  }
+  else if(this.isSpare(this.lastFrame)){
+    this.score += this.sumFrame(frame) + frame[0];
+  }
+  else {
+    this.score += this.sumFrame(frame);
+  }
 }
 
 Bowling.prototype.saveFrame = function(frame){

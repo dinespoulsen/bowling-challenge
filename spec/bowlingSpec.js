@@ -56,4 +56,32 @@ describe("Bowling", function(){
     bowling.bowl(10);
     expect(bowling.score).toEqual(10);
   });
+
+  it("should be able to add points after two frames", function(){
+    bowling.bowl(8);
+    bowling.bowl(1);
+    bowling.bowl(5);
+    bowling.bowl(3);
+    expect(bowling.score).toEqual(17);
+  })
+
+  it("should be able to add extra point after a spare", function(){
+    bowling.bowl(9);
+    bowling.bowl(1);
+    bowling.bowl(5);
+    bowling.bowl(3);
+    expect(bowling.score).toEqual(23);
+  })
+
+  it("should be able to add extra point after a strike", function(){
+    bowling.bowl(10);
+    bowling.bowl(8);
+    bowling.bowl(1);
+    expect(bowling.score).toEqual(28);
+  })
+
+  it("should give an extra turn if frame 10 is a strike", function(){
+
+  });
+
 });
