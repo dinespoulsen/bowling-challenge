@@ -40,11 +40,20 @@ describe("Bowling", function(){
     expect(bowling.isSpare([9,1])).toBe(true);
   });
 
-  it("should save last fram scores", function(){
+  it("should save last frame scores", function(){
     bowling.bowl(9);
     bowling.bowl(1);
     expect(bowling.lastFrame).toEqual([9,1])
   });
 
+  it("should set its score after a frame", function(){
+    bowling.bowl(4);
+    bowling.bowl(5);
+    expect(bowling.score).toEqual(9);
+  });
 
+  it("should set its score after a strike", function(){
+    bowling.bowl(10);
+    expect(bowling.score).toEqual(10);
+  });
 });
