@@ -80,8 +80,48 @@ describe("Bowling", function(){
     expect(bowling.score).toEqual(28);
   })
 
-  it("should give an extra turn if frame 10 is a strike", function(){
+  it("should be able to add extra point after two strikes", function(){
+    bowling.bowl(10);
+    bowling.bowl(10);
+    expect(bowling.score).toEqual(30);
+  })
 
+  it("should be able to add extra point after 3 strikes", function(){
+    bowling.bowl(10);
+    bowling.bowl(10);
+    bowling.bowl(10);
+    expect(bowling.score).toEqual(50);
+  })
+
+  it("should be able to add extra point after 2 spares", function(){
+    bowling.bowl(9);
+    bowling.bowl(1);
+    bowling.bowl(9);
+    bowling.bowl(1);
+    expect(bowling.score).toEqual(29);
+  })
+
+  it("should extend the game if 10th frame is a strike", function(){
+    for(var i = 0; i < 10; i += 1) {
+      bowling.bowl(10);
+    }
+    expect(bowling.extraFrames).toBe(true);
   });
 
+  it("should finish the game if there is no strike on the 10th frame", function(){
+    for(var i = 0; i < 9; i += 1) {
+      bowling.bowl(10);
+    }
+    bowling.bowl(9);
+    bowling.bowl(9);
+    expect( function(){bowling.bowl(4)}).toThrow(new Error("The game is over"))
+  });
+
+  it("should stop after 12th frame if there are extra frames", function(){
+    for(var i = 0; i < 12; i += 1) {
+      bowling.bowl(10);
+    }
+    expect( function(){bowling.bowl(10)}).toThrow(new Error("you do not have more frames"))
+  });
+// expect(function () {thermostat.decreaseTemperature()}).toThrow("Mininum temperature is 10 degrees. Cannot go below.")
 });

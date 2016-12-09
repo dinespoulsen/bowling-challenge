@@ -1,8 +1,9 @@
 function Bowling(){
-  this.frame = 1
-  this.lastFrame = []
-  this.currentFrame = []
-  this.score = 0
+  this.frame = 1;
+  this.lastFrame = [];
+  this.currentFrame = [];
+  this.score = 0;
+  this.extraFrames = false;
 }
 
 Bowling.prototype.getFrame = function(){
@@ -10,22 +11,31 @@ Bowling.prototype.getFrame = function(){
 }
 
 Bowling.prototype.bowl = function(score){
-  if(this.isNextFrame()) {
-    this.currentFrame.push(score);
-    this.frameScore(this.currentFrame);
-    this.saveFrame(this.currentFrame);
-    this.frame += 1;
+  if(this.frame >= 13){
+    throw new Error("you do not have more frames");
+  }
+  if(this.frame === 11 && !this.extraFrames){
+    throw new Error("The game is over");
   }
   else {
-    if(score == 10){
+    if(this.isNextFrame()) {
       this.currentFrame.push(score);
-      this.currentFrame.push(0);
       this.frameScore(this.currentFrame);
       this.saveFrame(this.currentFrame);
       this.frame += 1;
     }
     else {
-      this.currentFrame.push(score);
+      if(score == 10){
+        this.isExtraGame();
+        this.currentFrame.push(score);
+        this.currentFrame.push(0);
+        this.frameScore(this.currentFrame);
+        this.saveFrame(this.currentFrame);
+        this.frame += 1;
+      }
+      else {
+        this.currentFrame.push(score);
+      }
     }
   }
 }
@@ -71,4 +81,10 @@ Bowling.prototype.frameScore = function(frame){
 Bowling.prototype.saveFrame = function(frame){
   this.lastFrame = frame;
   this.currentFrame = []
+}
+
+Bowling.prototype.isExtraGame = function(){
+  if(this.frame === 10){
+    this.extraFrames = true;
+  }
 }
