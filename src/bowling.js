@@ -1,5 +1,6 @@
 function Bowling(){
   this.frame = 1;
+  this.secondLastFrame = [];
   this.lastFrame = [];
   this.currentFrame = [];
   this.score = 0;
@@ -11,11 +12,18 @@ Bowling.prototype.getFrame = function(){
 }
 
 Bowling.prototype.bowl = function(score){
-  if(this.frame >= 13){
-    throw new Error("you do not have more frames");
-  }
-  if(this.frame === 11 && !this.extraFrames){
+  if(this.frame >= 12){
     throw new Error("The game is over");
+  }
+  else if(this.frame === 11 && !this.extraFrames){
+    throw new Error("The game is over");
+  }
+  else if(this.frame === 11 && this.extraFrames){
+    this.currentFrame.push(score);
+    if(this.currentFrame.length === 2){
+      this.frameScore(this.currentFrame);
+      this.frame += 1;
+    }
   }
   else {
     if(this.isNextFrame()) {
@@ -26,11 +34,11 @@ Bowling.prototype.bowl = function(score){
     }
     else {
       if(score == 10){
-        this.isExtraGame();
         this.currentFrame.push(score);
         this.currentFrame.push(0);
         this.frameScore(this.currentFrame);
         this.saveFrame(this.currentFrame);
+        this.isExtraGame();
         this.frame += 1;
       }
       else {
@@ -40,6 +48,14 @@ Bowling.prototype.bowl = function(score){
   }
 }
 
+Bowling.prototype.sumFrame = function(frame){
+  return frame[0] + frame[1];
+}
+
+Bowling.prototype.isNextFrame = function(){
+  return this.currentFrame.length === 1;
+}
+
 Bowling.prototype.isStrike = function(frame){
   if(frame[0] === 10) {
     return true;
@@ -47,14 +63,6 @@ Bowling.prototype.isStrike = function(frame){
   else {
     return false;
   }
-}
-
-Bowling.prototype.sumFrame = function(frame){
-  return frame[0] + frame[1];
-}
-
-Bowling.prototype.isNextFrame = function(){
-  return this.currentFrame.length === 1;
 }
 
 Bowling.prototype.isSpare = function(frame){
@@ -67,18 +75,34 @@ Bowling.prototype.isSpare = function(frame){
 }
 
 Bowling.prototype.frameScore = function(frame){
-  if(this.isStrike(this.lastFrame)){
-    this.score += this.sumFrame(frame)*2
-  }
-  else if(this.isSpare(this.lastFrame)){
-    this.score += this.sumFrame(frame) + frame[0];
+  if(this.extraFrames) {
+    this.score += frame[0]*2 + frame[1]
   }
   else {
-    this.score += this.sumFrame(frame);
+    if(this.isStrike(frame) && !this.isStrike(this.lastFrame) && !this.isStrike(this.secondLastFrame)){
+      this.score += this.sumFrame(frame)*1
+    }
+    else if(this.isStrike(frame) && this.isStrike(this.lastFrame) && !this.isStrike(this.secondLastFrame)){
+      this.score += this.sumFrame(frame)*2
+    }
+    else if(this.isStrike(frame) && this.isStrike(this.lastFrame) && this.isStrike(this.secondLastFrame)){
+      this.score += this.sumFrame(frame)*3
+    }
+    else if(!this.isStrike(frame) && this.isStrike(this.lastFrame) && !this.isStrike(this.secondLastFrame)){
+      this.score += this.sumFrame(frame)*2
+    }
+    else if(this.isSpare(this.lastFrame)){
+      this.score += this.sumFrame(frame) + frame[0];
+    }
+    else {
+      this.score += this.sumFrame(frame);
+    }
   }
+
 }
 
 Bowling.prototype.saveFrame = function(frame){
+  this.secondLastFrame = this.lastFrame;
   this.lastFrame = frame;
   this.currentFrame = []
 }

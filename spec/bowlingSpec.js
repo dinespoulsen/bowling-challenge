@@ -73,6 +73,14 @@ describe("Bowling", function(){
     expect(bowling.score).toEqual(23);
   })
 
+  it("should be able to add extra point after 2 spares", function(){
+    bowling.bowl(9);
+    bowling.bowl(1);
+    bowling.bowl(9);
+    bowling.bowl(1);
+    expect(bowling.score).toEqual(29);
+  })
+
   it("should be able to add extra point after a strike", function(){
     bowling.bowl(10);
     bowling.bowl(8);
@@ -90,16 +98,15 @@ describe("Bowling", function(){
     bowling.bowl(10);
     bowling.bowl(10);
     bowling.bowl(10);
-    expect(bowling.score).toEqual(50);
+    expect(bowling.score).toEqual(60);
   })
 
-  it("should be able to add extra point after 2 spares", function(){
-    bowling.bowl(9);
-    bowling.bowl(1);
-    bowling.bowl(9);
-    bowling.bowl(1);
-    expect(bowling.score).toEqual(29);
-  })
+  it("should be able to add extra point after 10 strikes", function(){
+    for(var i = 0; i < 10; i += 1) {
+      bowling.bowl(10);
+    }
+    expect(bowling.score).toEqual(270);
+  });
 
   it("should extend the game if 10th frame is a strike", function(){
     for(var i = 0; i < 10; i += 1) {
@@ -117,10 +124,26 @@ describe("Bowling", function(){
     expect( function(){bowling.bowl(4)}).toThrow(new Error("The game is over"))
   });
 
-  it("should stop after 12th frame if there are extra frames", function(){
+  it("should always stop after 11th frame", function(){
     for(var i = 0; i < 12; i += 1) {
       bowling.bowl(10);
     }
-    expect( function(){bowling.bowl(10)}).toThrow(new Error("you do not have more frames"))
+    expect( function(){bowling.bowl(10)}).toThrow(new Error("The game is over"))
+  });
+
+  it("should be able to play a perfect game", function(){
+    for(var i = 0; i < 12; i += 1) {
+      bowling.bowl(10);
+    }
+    expect(bowling.score).toEqual(300);
+  });
+
+  it("should be able to not make strike in extra frames", function(){
+    for(var i = 0; i < 10; i += 1) {
+      bowling.bowl(10);
+    }
+    bowling.bowl(9);
+    bowling.bowl(0);
+    expect(bowling.score).toEqual(288);
   });
 });
