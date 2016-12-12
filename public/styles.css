@@ -1,0 +1,85 @@
+body {
+  font-family: Verdana, sans-serif;
+}
+
+header {
+    text-align: center;
+    overflow: auto;
+    max-width: 500px;
+    background-color: red ;
+    margin: auto;
+}
+
+footer {
+  overflow: auto;
+  max-width: 500px;
+  margin: auto;
+}
+
+#wrapper {
+  overflow: auto;
+  max-width: 500px;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.bowl {
+  float: left;
+}
+
+.score {
+  float: right;
+}
+
+#score-display {
+  margin: 0;
+  margin-right: 40px;
+  margin-bottom: 20px;
+  font-size: 6em;
+}
+
+
+input[type=text] {
+    display: block;
+    max-width: 300px;
+    height: 50%;
+    padding: 20px 20px;
+    margin: auto;
+    box-sizing: border-box;
+    font-size: 2em;
+    border: none;
+    border-bottom: solid red;
+    outline: none;
+}
+
+#info {
+  margin-left: 30px;
+}
+
+#error-message {
+  display: none;
+}
+
+#notice-message {
+  display: none;
+}
+
+#input-holder {
+  width: 100%;
+  margin-left: 50px;
+  margin-top: 100px;
+}
+
+#bowl-button {
+  margin-top: 20px;
+  margin-left: 60px;
+}
+
+#history-header {
+  border-bottom: solid 2px red;
+}
+
+#pins-left {
+  display: none;
+}

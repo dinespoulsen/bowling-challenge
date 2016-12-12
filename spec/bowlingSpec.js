@@ -120,7 +120,7 @@ describe("Bowling", function(){
       bowling.bowl(10);
     }
     bowling.bowl(9);
-    bowling.bowl(9);
+    bowling.bowl(1);
     expect( function(){bowling.bowl(4)}).toThrow(new Error("The game is over"))
   });
 
@@ -145,5 +145,16 @@ describe("Bowling", function(){
     bowling.bowl(9);
     bowling.bowl(0);
     expect(bowling.score).toEqual(288);
+  });
+
+  describe("when putting in too many pins", function(){
+    it("should throw an error when putting in more than 10 pins in one bowl", function(){
+      expect( function(){bowling.bowl(11)}).toThrow(new Error("Can't knock down more than 10 pins in total"));
+    });
+
+    it("should throw an error when putting in more than 10 pins over two bowls", function(){
+      bowling.bowl(3);
+      expect( function(){bowling.bowl(8)}).toThrow(new Error("Can't knock down more than 10 pins in total"));
+    });
   });
 });

@@ -11,8 +11,15 @@ Bowling.prototype.getFrame = function(){
   return this.frame;
 }
 
+Bowling.prototype.getScore = function(){
+  return this.score;
+}
+
 Bowling.prototype.bowl = function(score){
-  if(this.frame >= 12){
+  if(score > 10) {
+    throw new Error("Can't knock down more than 10 pins in total");
+  }
+  else if(this.frame >= 12){
     throw new Error("The game is over");
   }
   else if(this.frame === 11 && !this.extraFrames){
@@ -26,7 +33,10 @@ Bowling.prototype.bowl = function(score){
     }
   }
   else {
-    if(this.isNextFrame()) {
+    if(score > 10 || ( score + this.currentFrame[0]) > 10) {
+      throw new Error("Can't knock down more than 10 pins in total");
+    }
+    else if(this.isNextFrame()) {
       this.currentFrame.push(score);
       this.frameScore(this.currentFrame);
       this.saveFrame(this.currentFrame);
