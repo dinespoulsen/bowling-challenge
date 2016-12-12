@@ -9,17 +9,19 @@
 
 <body>
   <header>
-    <p id="error-message">Can't knock down more than 10 pins in total</p>
-    <p id="notice-message">You gained two extra bowls!</p>
+    <div id="info">
+      <ul>
+        <li><span>Frame: </span><span id="frame"></span></li>
+        <li><span>Pins left:</span><span id="pins-left">10</span></li>
+      </ul>
+    </div>
+    <div class="messages">
+      <p id="error-message">Can't knock down more than 10 pins in total</p>
+      <p id="notice-message">You gained two extra bowls!</p>
+    </div>
   </header>
   <div id="wrapper">
     <div class="bowl">
-      <div id="info">
-        <ul>
-          <li><span>Frame: </span><span id="frame"></span></li>
-          <li><span>Pins left:</span><span id="pins-left">10</span></li>
-        </ul>
-      </div>
       <div id="input-holder">
         <input type="text" id="bowl-score" maxlength="2" size="5"></input>
         <button id="bowl-button">Bowl</button>

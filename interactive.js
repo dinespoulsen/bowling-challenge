@@ -3,13 +3,20 @@ window.onload = function() {
   updateDisplay();
 }
 
+$('#bowl-score').keypress(function(e){
+    if(e.which == 13){
+        $('#bowl-button').click();
+    }
+});
+
 var updateDisplay = function(score = ""){
+  frameDisplay();
+  scoreDisplay(score);
   $("#score-display").text(bowling.score);
-  $("#frame").text(bowling.frame);
   $("#bowl-score").val("");
   $("#bowl-score").focus();
 
-  // Remaining frames
+  // Remaining pins
   if(bowling.currentFrame.length === 1) {
     $("#pins-left").show();
     $("#pins-left").text(10 - score)
@@ -21,16 +28,33 @@ var updateDisplay = function(score = ""){
   if(bowling.extraFrames){
     $("#notice-message").show(60);
   }
-  // scores history
+  if(score === 10 & bowling.extraFrames) {
+    $("#pins-left").text("10")
+  }
+
+
+};
+
+var frameDisplay = function(){
+  var frameNumber = +$("#frame").text();
+  if(frameNumber > 11){
+    $("#frame").text("11");
+  }
+  else {
+    $("#frame").text(bowling.frame);
+  }
+}
+
+var scoreDisplay = function(score) {
   var scores = $("#bowls").text();
   if(score === 10){
-    var score = "X";
+    var score = "X ";
     $("#bowls").text(scores + score);
   }
   else {
     $("#bowls").text(scores + " " + score);
   }
-};
+}
 
 $("#bowl-button").click( function(){
   var bowlScore = parseInt($("#bowl-score").val());
@@ -46,8 +70,10 @@ $("#bowl-button").click( function(){
 
 
 $("#reset").click( function(){
+  bowling = new Bowling();
+  $("#notice-message").hide(60);
   $("#pins-left").hide();
   $("#error-message").hide();
-  bowling = new Bowling();
+  $("#bowls").text("");
   updateDisplay();
 });
