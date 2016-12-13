@@ -38,6 +38,9 @@ Bowling.prototype.bowl = function(score){
     }
     else if(this.isNextFrame()) {
       this.currentFrame.push(score);
+      if(this.frame === 10 && this.isSpare(this.currentFrame)){
+        this.extraFrames = true;
+      }
       this.frameScore(this.currentFrame);
       this.saveFrame(this.currentFrame);
       this.frame += 1;
