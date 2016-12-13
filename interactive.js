@@ -48,7 +48,7 @@ var frameDisplay = function(){
 var scoreDisplay = function(score) {
   var scores = $("#bowls").text();
   if(score === 10){
-    var score = "X ";
+    var score = " X";
     $("#bowls").text(scores + score);
   }
   else {
