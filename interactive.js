@@ -60,6 +60,7 @@ $("#bowl-button").click( function(){
   var bowlScore = parseInt($("#bowl-score").val());
   if (bowlScore > 10 || ( bowlScore + bowling.currentFrame[0]) > 10) {
     $("#error-message").show(60);
+    $("#bowl-score").focus();
   }
   else {
     $("#error-message").hide(60);

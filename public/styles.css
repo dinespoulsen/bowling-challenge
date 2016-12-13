@@ -47,12 +47,12 @@ ul {
     background-color: white;
     border: solid 1px #ff5900;
     color: #ff5900;
-    padding: 8px 18px;
+    padding: 8px 14px;
     border-radius: 18px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 12px;
+    font-size: 10px;
     margin: 4px 2px;
     cursor: pointer;
 }
@@ -137,8 +137,4 @@ input[type=text] {
   padding-top: 10px;
   padding-left: 20px;
   padding-bottom: 10px;
-}
-
-#reset {
-  align: right;
 }
