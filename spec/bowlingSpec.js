@@ -121,7 +121,7 @@ describe("Bowling", function(){
     }
     bowling.bowl(9);
     bowling.bowl(1);
-    expect( function(){bowling.bowl(4)}).toThrow(new Error("The game is over"))
+    expect(bowling.extraFrames).toBe(true);
   });
 
   it("should always stop after 11th frame", function(){
