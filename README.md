@@ -45,6 +45,18 @@ How to use the applicaton
 
 To run the program start run the index.html file in your favourite browser. Browser needs to support jquery in order to make the application work.
 
+Example
+-----
+
+Starting up the game and entering those strikes!
+
+![alt tag](./start.png)
+
+Checking the score or frame during the game.
+
+'Game Over' message when end of last frame is reached.
+
+
 Technologies used
 -----
 * Html
