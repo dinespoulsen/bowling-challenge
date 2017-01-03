@@ -57,7 +57,7 @@ Checking the score and gaining extra frames.
 
 Taking care edge cases when entering in scores.
 
-![alt tag](./edgeCases.png)
+![alt tag](./edgeCase.png)
 
 
 Technologies used
