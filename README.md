@@ -55,7 +55,7 @@ Starting up the game and entering those strikes!
 Checking the score and gaining extra frames.
 ![alt tag](./extraFrames.png)
 
-Taking care edge cases when entering in scores.
+Taking care of edge cases when entering in scores.
 
 ![alt tag](./edgeCase.png)
 
