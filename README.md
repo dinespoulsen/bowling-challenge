@@ -52,9 +52,12 @@ Starting up the game and entering those strikes!
 
 ![alt tag](./start.png)
 
-Checking the score or frame during the game.
+Checking the score and gaining extra frames.
+![alt tag](./extraFrames.png)
 
-'Game Over' message when end of last frame is reached.
+Taking care edge cases when entering in scores.
+
+![alt tag](./edgeCases.png)
 
 
 Technologies used
