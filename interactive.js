@@ -25,6 +25,7 @@ var updateDisplay = function(score = ""){
     $("#pins-left").show();
     $("#pins-left").text(10)
   }
+
   if(bowling.extraFrames){
     $("#notice-message").show(60);
   }
@@ -58,7 +59,7 @@ var scoreDisplay = function(score) {
 
 $("#bowl-button").click( function(){
   var bowlScore = parseInt($("#bowl-score").val());
-  if (bowlScore > 10 || ( bowlScore + bowling.currentFrame[0]) > 10) {
+  if (bowlScore > 10 || ( bowlScore + bowling.currentFrame[0]) > 10 && !bowling.extraFrames) {
     $("#error-message").show(60);
     $("#bowl-score").focus();
   }
